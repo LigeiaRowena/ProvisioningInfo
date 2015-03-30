@@ -18,7 +18,8 @@ You can open the xcode project and build it or open directly the app.
 
 #HELPER CLASSES
 
-1. NSScrollView+MultiLine
+- NSScrollView+MultiLine
+- 
 Category of NSScrollView to access directly to the textview of the scrollview.
 You have two utility methods:
 
@@ -31,7 +32,8 @@ To append a string to the existing string value of the textview of the scrollvie
 
 `- (void)setStringValue:(NSString*)string;`
 
-2. ProvisioningProfileBean
+- ProvisioningProfileBean
+- 
 Bean that represents the provisioning profile.
 You can init it by calling:
 
