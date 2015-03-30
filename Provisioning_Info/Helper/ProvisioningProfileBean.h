@@ -11,8 +11,6 @@
 
 - (id)initWithPath:(NSString *)path;
 
-@property (nonatomic, strong) NSDictionary *profile;
-
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *teamName;
 @property (nonatomic, strong) NSString *valid;

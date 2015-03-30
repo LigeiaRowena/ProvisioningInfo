@@ -8,6 +8,9 @@
 #import "ProvisioningProfileBean.h"
 
 @interface ProvisioningProfileBean ()
+
+@property (nonatomic, strong) NSDictionary *profile;
+
 @end
 
 @implementation ProvisioningProfileBean
