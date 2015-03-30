@@ -12,7 +12,7 @@
 		DF94945B1AC9358B00381D71 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF9494591AC9358B00381D71 /* MainMenu.xib */; };
 		DF9494711AC9362700381D71 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = DF9494701AC9362700381D71 /* Icon.icns */; };
 		DF9494781AC9371F00381D71 /* NSScrollView+MultiLine.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9494751AC9371F00381D71 /* NSScrollView+MultiLine.m */; };
-		DF9494791AC9371F00381D71 /* YAProvisioningProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9494771AC9371F00381D71 /* YAProvisioningProfile.m */; };
+		DF9494791AC9371F00381D71 /* ProvisioningProfileBean.m in Sources */ = {isa = PBXBuildFile; fileRef = DF9494771AC9371F00381D71 /* ProvisioningProfileBean.m */; };
 		DF94947D1AC9373D00381D71 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF94947B1AC9373D00381D71 /* MasterViewController.m */; };
 		DF94947E1AC9373D00381D71 /* MasterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF94947C1AC9373D00381D71 /* MasterViewController.xib */; };
 /* End PBXBuildFile section */
@@ -27,8 +27,8 @@
 		DF9494701AC9362700381D71 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		DF9494741AC9371F00381D71 /* NSScrollView+MultiLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScrollView+MultiLine.h"; sourceTree = "<group>"; };
 		DF9494751AC9371F00381D71 /* NSScrollView+MultiLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScrollView+MultiLine.m"; sourceTree = "<group>"; };
-		DF9494761AC9371F00381D71 /* YAProvisioningProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAProvisioningProfile.h; sourceTree = "<group>"; };
-		DF9494771AC9371F00381D71 /* YAProvisioningProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAProvisioningProfile.m; sourceTree = "<group>"; };
+		DF9494761AC9371F00381D71 /* ProvisioningProfileBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvisioningProfileBean.h; sourceTree = "<group>"; };
+		DF9494771AC9371F00381D71 /* ProvisioningProfileBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvisioningProfileBean.m; sourceTree = "<group>"; };
 		DF94947A1AC9373D00381D71 /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		DF94947B1AC9373D00381D71 /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		DF94947C1AC9373D00381D71 /* MasterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MasterViewController.xib; sourceTree = "<group>"; };
@@ -86,8 +86,8 @@
 			children = (
 				DF9494741AC9371F00381D71 /* NSScrollView+MultiLine.h */,
 				DF9494751AC9371F00381D71 /* NSScrollView+MultiLine.m */,
-				DF9494761AC9371F00381D71 /* YAProvisioningProfile.h */,
-				DF9494771AC9371F00381D71 /* YAProvisioningProfile.m */,
+				DF9494761AC9371F00381D71 /* ProvisioningProfileBean.h */,
+				DF9494771AC9371F00381D71 /* ProvisioningProfileBean.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -175,7 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF9494791AC9371F00381D71 /* YAProvisioningProfile.m in Sources */,
+				DF9494791AC9371F00381D71 /* ProvisioningProfileBean.m in Sources */,
 				DF9494561AC9358B00381D71 /* main.m in Sources */,
 				DF94947D1AC9373D00381D71 /* MasterViewController.m in Sources */,
 				DF9494541AC9358B00381D71 /* AppDelegate.m in Sources */,
@@ -280,6 +280,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Provisioning_Info/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "Provisioning Info";
 			};
 			name = Debug;
@@ -291,6 +292,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Provisioning_Info/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "Provisioning Info";
 			};
 			name = Release;
