@@ -23,12 +23,11 @@ You can open the xcode project and build it or open directly the app.
 Category of NSScrollView to access directly to the textview of the scrollview.
 You have two utility methods:
 
--
 To append a string to the existing string value of the textview of the scrollview.
 
 `- (void)appendStringValue:(NSString*)string;`
 
-- To set the string to the existing string value of the textview of the scrollview.
+To set the string to the existing string value of the textview of the scrollview.
 
 `- (void)setStringValue:(NSString*)string;`
 
