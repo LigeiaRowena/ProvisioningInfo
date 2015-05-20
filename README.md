@@ -59,3 +59,8 @@ You have a lot of public properties you can access:
 @property (nonatomic, strong) NSString *teamIdentifier;
 @property (nonatomic, strong) NSString *path;
 ```
+
+
+Screens:
+
+![alt text](https://s3.amazonaws.com/cocoacontrols_production/uploads/control_image/image/6382/Schermata_2015-05-09_alle_19.28.27.png "Screen")
