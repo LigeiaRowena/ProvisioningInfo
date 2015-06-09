@@ -37,7 +37,12 @@
     self.expirationDate = self.profile[@"ExpirationDate"];
     self.devices = self.profile[@"ProvisionedDevices"];
     self.timeToLive = [self.profile[@"TimeToLive"] integerValue];
-    self.applicationIdentifier = self.profile[@"Entitlements"][@"application-identifier"];
+
+	if (self.profile[@"Entitlements"][@"application-identifier"])
+		self.applicationIdentifier = self.profile[@"Entitlements"][@"application-identifier"];
+	else
+		self.applicationIdentifier = self.profile[@"Entitlements"][@"com.apple.application-identifier"];
+
     self.certificates = self.profile[@"DeveloperCertificates"];
     self.valid = ([[NSDate date] timeIntervalSinceDate:self.expirationDate] > 0) ? @"NO" : @"YES";
     self.version = [self.profile[@"Version"] integerValue];

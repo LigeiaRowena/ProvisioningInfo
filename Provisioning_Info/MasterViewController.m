@@ -12,6 +12,9 @@
 #define kDefaultPath @"/Library/MobileDevice/Provisioning Profiles"
 
 @interface MasterViewController ()
+{
+	NSArray *extensions;
+}
 
 @property (nonatomic, weak) IBOutlet NSTextField *pathField;
 @property (nonatomic, weak) IBOutlet NSTableView *table;
@@ -47,6 +50,8 @@
     self.filterProfiles = @[].mutableCopy;
 	self.formatter = [[NSDateFormatter alloc] init];
 	self.formatter.dateFormat = @"dd-MM-yyyy";
+	extensions = @[@"mobileprovision", @"provisionprofile"];
+
     
     // set default value of the filter: show all profiles
     self.isFilter = NO;
@@ -104,7 +109,7 @@
     
     // searching for the profiles
     NSArray *provisioningProfiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.profilesPath error:nil];
-    provisioningProfiles = [provisioningProfiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self ENDSWITH '.mobileprovision'"]];
+	provisioningProfiles = [provisioningProfiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"pathExtension IN %@", extensions]];
     for (NSString *path in provisioningProfiles)
     {
         if ([[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/%@", self.profilesPath, path] isDirectory:NO]) {
@@ -216,7 +221,7 @@
 	
 	[opanel setCanChooseFiles:TRUE];
 	[opanel setCanChooseDirectories:FALSE];
-	[opanel setAllowedFileTypes:@[@"mobileprovision"]];
+	[opanel setAllowedFileTypes:extensions];
 	[opanel setPrompt:@"Open"];
 	[opanel setTitle:@"Open file"];
 	[opanel setMessage:@"Please select a path where to open file"];
