@@ -60,6 +60,15 @@ You have a lot of public properties you can access:
 @property (nonatomic, strong) NSString *path;
 ```
 
+#RELEASE LOG
+
+1.0
+First committ
+
+1.2
+Added compatibility with OSX certificates: now the app supports also .provisionprofile extensions, parses them and shows them in the UI.
+Now the app shows also the platform type: OSX or iOS.
+
 
 Screens:
 
