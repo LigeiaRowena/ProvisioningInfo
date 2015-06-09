@@ -28,5 +28,7 @@
 @property (nonatomic, strong) NSString *appIdName;
 @property (nonatomic, strong) NSString *teamIdentifier;
 @property (nonatomic, strong) NSString *path;
+@property (nonatomic, strong) NSString *platform;
+
 
 @end

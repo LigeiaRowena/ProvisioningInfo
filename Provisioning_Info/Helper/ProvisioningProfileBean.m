@@ -49,7 +49,14 @@
     self.bundleIdentifier = self.applicationIdentifier;
     self.UUID = self.profile[@"UUID"];
     self.prefixes = self.profile[@"ApplicationIdentifierPrefix"];
-    
+	
+	NSMutableString *platforms = @"".mutableCopy;
+	for (NSString *string in self.profile[@"Platform"])
+	{
+		[platforms appendFormat:@"%@  ", string];
+	}
+	self.platform = platforms;
+		
     for (NSString *prefix in self.prefixes) {
 		NSRange range = [self.bundleIdentifier rangeOfString:prefix];
 		if (range.location != NSNotFound)

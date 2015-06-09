@@ -174,6 +174,7 @@
     NSMutableString *string = @"".mutableCopy;
     [string appendFormat:@"Profile name: %@", profile.name];
     [string appendFormat:@"\nBundle identifier: %@", profile.bundleIdentifier];
+	[string appendFormat:@"\nPlatform(s): %@", profile.platform];
     [string appendFormat:@"\nCreation date: %@", profile.creationDate ? [self.formatter stringFromDate:profile.creationDate] : @"Unknown"];
     [string appendFormat:@"\nExpiration date: %@", profile.expirationDate ? [self.formatter stringFromDate:profile.expirationDate] : @"Unknown"];
     [string appendFormat:@"\nTeam name: %@", profile.teamName ? profile.teamName : @""];

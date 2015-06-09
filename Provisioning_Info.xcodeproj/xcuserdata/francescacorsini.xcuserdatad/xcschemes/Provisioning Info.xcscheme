@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DF94944C1AC9358B00381D71"
                BuildableName = "Provisioning Info.app"
-               BlueprintName = "Provisioning_Info"
+               BlueprintName = "Provisioning Info"
                ReferencedContainer = "container:Provisioning_Info.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -58,7 +58,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DF94944C1AC9358B00381D71"
             BuildableName = "Provisioning Info.app"
-            BlueprintName = "Provisioning_Info"
+            BlueprintName = "Provisioning Info"
             ReferencedContainer = "container:Provisioning_Info.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -78,7 +78,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DF94944C1AC9358B00381D71"
             BuildableName = "Provisioning Info.app"
-            BlueprintName = "Provisioning_Info"
+            BlueprintName = "Provisioning Info"
             ReferencedContainer = "container:Provisioning_Info.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -97,7 +97,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DF94944C1AC9358B00381D71"
             BuildableName = "Provisioning Info.app"
-            BlueprintName = "Provisioning_Info"
+            BlueprintName = "Provisioning Info"
             ReferencedContainer = "container:Provisioning_Info.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

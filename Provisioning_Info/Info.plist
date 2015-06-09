@@ -11,7 +11,7 @@
 	<key>CFBundleIconFile</key>
 	<string>Icon.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>fcorsini.app</string>
+	<string>provisioninginfo.app</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
