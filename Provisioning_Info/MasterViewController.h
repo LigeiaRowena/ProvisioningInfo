@@ -9,4 +9,6 @@
 
 @interface MasterViewController : NSViewController
 
+-(NSArray*)getSelectedProfiles;
+
 @end
