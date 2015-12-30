@@ -253,7 +253,7 @@
     if (profile == nil)
         [NSApp presentError:[NSError errorWithDomain:@"Failed to load the provisioning profile" code:0 userInfo:@{}]];
     else
-        [[NSWorkspace sharedWorkspace] selectFile:profile.path inFileViewerRootedAtPath:nil];
+        [[NSWorkspace sharedWorkspace] selectFile:profile.path inFileViewerRootedAtPath:@""];
 }
 
 - (IBAction)defaultPathButton:(id)sender

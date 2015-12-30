@@ -131,7 +131,7 @@
 		DF9494451AC9358B00381D71 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Francesca Corsini";
 				TargetAttributes = {
 					DF94944C1AC9358B00381D71 = {
@@ -218,6 +218,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -282,6 +283,7 @@
 				INFOPLIST_FILE = Provisioning_Info/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = provisioninginfo.app;
 				PRODUCT_NAME = "Provisioning Info";
 				PROVISIONING_PROFILE = "";
 			};
@@ -295,6 +297,7 @@
 				INFOPLIST_FILE = Provisioning_Info/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = provisioninginfo.app;
 				PRODUCT_NAME = "Provisioning Info";
 				PROVISIONING_PROFILE = "";
 			};
