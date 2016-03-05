@@ -8,12 +8,17 @@
 #import "MasterViewController.h"
 #import "ProvisioningProfileBean.h"
 #import "NSScrollView+MultiLine.h"
+#import "AppDelegate.h"
+#import <QuickLook/QuickLook.h>
+#import <Quartz/Quartz.h>
+#import "QLPreviewCont.h"
 
 #define kDefaultPath @"/Library/MobileDevice/Provisioning Profiles"
 
 @interface MasterViewController ()
 {
 	NSArray *extensions;
+    QLPreviewCont *quickLookCont;
 }
 
 @property (nonatomic, weak) IBOutlet NSTextField *pathField;
@@ -31,6 +36,44 @@
 @end
 
 @implementation MasterViewController
+
+#pragma mark - QuickView
+
+-(void)spacePressed{
+    if ([QLPreviewPanel sharedPreviewPanelExists] && [[QLPreviewPanel sharedPreviewPanel] isVisible]) {
+        [[QLPreviewPanel sharedPreviewPanel] orderOut:nil];
+    } else {
+        [[QLPreviewPanel sharedPreviewPanel] updateController]; //not sure if this is really needed as it should update itself…
+        [[QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFront:self];
+    }
+}
+
+-(BOOL)acceptsPreviewPanelControl:(QLPreviewPanel *)panel{
+
+    return YES;
+}
+
+
+-(void)beginPreviewPanelControl:(QLPreviewPanel *)panel
+{
+    if (!quickLookCont) {
+        quickLookCont = [[QLPreviewCont alloc]init];
+    }
+
+    NSMutableArray* files = [NSMutableArray array];
+    for (ProvisioningProfileBean* profile in [self getSelectedProfiles]) {
+        [files addObject:[profile path]];
+    }
+
+    [quickLookCont setProfiles:files];
+    
+    [[QLPreviewPanel sharedPreviewPanel] setDelegate:quickLookCont];
+    [[QLPreviewPanel sharedPreviewPanel] setDataSource:quickLookCont];
+}
+
+-(void)endPreviewPanelControl:(QLPreviewPanel *)panel
+{
+}
 
 #pragma mark - Init
 
@@ -93,6 +136,13 @@
     }
 }
 
+-(void)keyDown:(NSEvent *)theEvent{
+    unsigned short keyPress = [theEvent keyCode];
+    if (keyPress == 49){
+        [self spacePressed];
+    }
+}
+
 #pragma mark - Manage Profiles
 
 - (void)loadLocalProfiles:(NSString*)customPath
@@ -146,6 +196,16 @@
     }];
 }
 
+- (void)filterProfilesByExpiration
+{
+    [self.filterProfiles removeAllObjects];
+    [self.profiles enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        ProvisioningProfileBean *profile = (ProvisioningProfileBean*)obj;
+        if ([profile.expirationDate isLessThan:[NSDate date]])
+            [self.filterProfiles addObject:profile];
+    }];
+}
+
 - (void)loadProfileAtPath:(NSString*)path
 {
 	// load profile from the path
@@ -186,10 +246,43 @@
     [self.textView setStringValue:string];
 }
 
+-(NSArray*)getSelectedProfiles
+{
+    NSMutableArray *selectedProfiles = [NSMutableArray new];
+    NSIndexSet* rows = self.table.selectedRowIndexes;
+    [rows enumerateIndexesUsingBlock:^(NSUInteger selectedRow, BOOL *stop) {
+        ProvisioningProfileBean *profile = nil;
+        profile = self.profiles[selectedRow];
+        if (self.isFilter)
+        {
+            if (self.filterProfiles.count > selectedRow)
+            {
+                profile = self.filterProfiles[selectedRow];
+                if (profile.name == nil)
+                    profile = nil;
+            }
+        }
+        else
+        {
+            if (self.profiles.count > selectedRow)
+            {
+                profile = self.profiles[selectedRow];
+                if (profile.name == nil)
+                    profile = nil;
+            }
+        }
+        if (profile != nil)
+            [selectedProfiles addObject:profile];
+    }];
+    
+    return selectedProfiles;
+}
+
 - (ProvisioningProfileBean*)getProfileSelected
 {
     ProvisioningProfileBean *profile = nil;
     NSInteger selectedRow = self.table.selectedRow;
+
     if (self.isFilter)
     {
         if (selectedRow >=0 && self.filterProfiles.count > selectedRow)
@@ -291,6 +384,14 @@
         [self filterProfilesByDistribution];
         [self.table reloadData];
     }
+
+    // Filter by distribution profiles
+    else if (self.filter.selectedSegment == 3)
+    {
+        self.isFilter = YES;
+        [self filterProfilesByExpiration];
+        [self.table reloadData];
+    }
     
     // Filter by all profiles
     else if (self.filter.selectedSegment == 2)
@@ -302,14 +403,22 @@
 
 - (IBAction)deleteProvisioning:(id)sender
 {
-    ProvisioningProfileBean *profile = [self getProfileSelected];
-    if (profile == nil)
-        [NSApp presentError:[NSError errorWithDomain:@"Failed to delete the provisioning profile" code:0 userInfo:@{}]];
-    else
-    {
+    NSArray *profiles = [self getSelectedProfiles];
+    for (ProvisioningProfileBean *profile in profiles) {
         [[NSFileManager defaultManager] trashItemAtURL:[NSURL fileURLWithPath:profile.path] resultingItemURL:nil error:nil];
-        [self refreshList:nil];
     }
+
+    [self refreshList:nil];
+    return;
+    
+//    ProvisioningProfileBean *profile = [self getProfileSelected];
+//    if (profile == nil)
+//        [NSApp presentError:[NSError errorWithDomain:@"Failed to delete the provisioning profile" code:0 userInfo:@{}]];
+//    else
+//    {
+//        [[NSFileManager defaultManager] trashItemAtURL:[NSURL fileURLWithPath:profile.path] resultingItemURL:nil error:nil];
+//        [self refreshList:nil];
+//    }
 }
 
 - (IBAction)changeDefaultPath:(id)sender
@@ -343,6 +452,12 @@
     {
         NSString *expirationDate = profile.expirationDate ? [self.formatter stringFromDate:profile.expirationDate] : @"Unknown";
         cellView.textField.stringValue = expirationDate;
+        return cellView;
+    }
+    else if ([tableColumn.identifier isEqualToString:@"Platform"])
+    {
+        NSString *platform = profile.platform ? profile.platform : @"";
+        cellView.textField.stringValue = platform;
         return cellView;
     }
 	return cellView;
